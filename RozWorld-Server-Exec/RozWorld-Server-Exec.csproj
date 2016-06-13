@@ -41,7 +41,8 @@
     <Reference Include="Oddmatics.RozWorld.API">
       <HintPath>..\..\RozWorld-Server\RozWorld-Server\bin\Debug\Oddmatics.RozWorld.API.dll</HintPath>
     </Reference>
-    <Reference Include="Oddmatics.RozWorld.Server">
+    <Reference Include="Oddmatics.RozWorld.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RozWorld-Server\RozWorld-Server\bin\Debug\Oddmatics.RozWorld.Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
