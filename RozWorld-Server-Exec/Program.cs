@@ -11,7 +11,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
         {
             var server = new RwServer();
             server.Logger = new ConsoleLogger();
-            RozWorld.API.Generic.RozWorld.SetServer(server);
+            RwCore.SetServer(server);
             server.Start();
             Console.ReadKey(true);
         }
