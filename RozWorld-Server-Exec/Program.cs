@@ -19,6 +19,11 @@ namespace Oddmatics.RozWorld.ServerExecutive
 
     class ConsoleLogger : ILogger
     {
+        public ConsoleLogger()
+        {
+            Console.SetBufferSize(160, 80);
+        }
+
 
         public void Out(string message)
         {
