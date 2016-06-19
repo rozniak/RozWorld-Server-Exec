@@ -2,6 +2,7 @@
 using Oddmatics.RozWorld.API.Generic;
 using Oddmatics.RozWorld.Server;
 using System;
+using Oddmatics.RozWorld.API.Generic.Chat;
 
 namespace Oddmatics.RozWorld.ServerExecutive
 {
@@ -17,7 +18,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
 
             CliInput = String.Empty;
             server.Logger = new ConsoleLogger();
-            server.Stopping += delegate(object sender, EventArgs e)
+            server.Stopped += delegate(object sender, EventArgs e)
                                 { shouldClose = true; };
             RwCore.SetServer(server);
             server.Start();
@@ -73,7 +74,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
         }
 
 
-        public void Out(string message)
+        public void Out(string message, bool colours = true)
         {
             if (!string.IsNullOrEmpty(Program.CliInput))
             {
@@ -83,7 +84,49 @@ namespace Oddmatics.RozWorld.ServerExecutive
                 Console.SetCursorPosition(0, Console.CursorTop);
             }
                 
-            Console.WriteLine("[" + DateTime.Now.ToString() + "] " + message);
+            Console.Write("[" + DateTime.Now.ToString() + "] ");
+
+            bool formatCodeActive = false;
+
+            foreach (char character in message)
+            {
+                if (formatCodeActive)
+                {
+                    string code = "&" + character;
+                    switch (code.ToUpper())
+                    {
+                        case ChatColour.BLACK: Console.ForegroundColor = ConsoleColor.Black; break;
+                        case ChatColour.DARK_BLUE: Console.ForegroundColor = ConsoleColor.DarkBlue; break;
+                        case ChatColour.GREEN: Console.ForegroundColor = ConsoleColor.DarkGreen; break;
+                        case ChatColour.TEAL: Console.ForegroundColor = ConsoleColor.DarkCyan; break;
+                        case ChatColour.DARK_RED: Console.ForegroundColor = ConsoleColor.DarkRed; break;
+                        case ChatColour.PURPLE: Console.ForegroundColor = ConsoleColor.DarkMagenta; break;
+                        case ChatColour.ORANGE: Console.ForegroundColor = ConsoleColor.DarkYellow; break;
+                        case ChatColour.GREY: Console.ForegroundColor = ConsoleColor.Gray; break;
+                        case ChatColour.DARK_GREY: Console.ForegroundColor = ConsoleColor.DarkGray; break;
+                        case ChatColour.BLUE: Console.ForegroundColor = ConsoleColor.Blue; break;
+                        case ChatColour.LIME: Console.ForegroundColor = ConsoleColor.Green; break;
+                        case ChatColour.CYAN: Console.ForegroundColor = ConsoleColor.Cyan; break;
+                        case ChatColour.RED: Console.ForegroundColor = ConsoleColor.Red; break;
+                        case ChatColour.MAGENTA: Console.ForegroundColor = ConsoleColor.Magenta; break;
+                        case ChatColour.YELLOW: Console.ForegroundColor = ConsoleColor.Yellow; break;
+                        case ChatColour.WHITE: Console.ForegroundColor = ConsoleColor.White; break;
+                        default: Console.Write(character); break;
+                    }
+                    formatCodeActive = false;
+                    continue;
+                }
+                else if (character == '&' && colours) // use colour param here to trigger colours
+                {
+                    formatCodeActive = true;
+                    continue;
+                }
+
+                Console.Write(character);
+            }
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write(Program.CliInput);
         }
 
