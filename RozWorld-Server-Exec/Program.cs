@@ -1,8 +1,8 @@
-﻿using Oddmatics.RozWorld.API.Server;
-using Oddmatics.RozWorld.API.Generic;
+﻿using Oddmatics.RozWorld.API.Generic;
+using Oddmatics.RozWorld.API.Generic.Chat;
+using Oddmatics.RozWorld.API.Server;
 using Oddmatics.RozWorld.Server;
 using System;
-using Oddmatics.RozWorld.API.Generic.Chat;
 
 namespace Oddmatics.RozWorld.ServerExecutive
 {
@@ -18,6 +18,12 @@ namespace Oddmatics.RozWorld.ServerExecutive
 
             CliInput = String.Empty;
             server.Logger = new ConsoleLogger();
+            server.FatalError += delegate(object sender, EventArgs e)
+                                 {
+                                     server.Logger.Out("Fatal error occurred - press any key to exit...");
+                                     Console.ReadKey(true);
+                                     shouldClose = true;
+                                 };
             server.Stopped += delegate(object sender, EventArgs e)
                                 { shouldClose = true; };
             RwCore.SetServer(server);
