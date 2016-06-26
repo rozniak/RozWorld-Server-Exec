@@ -25,8 +25,13 @@ namespace Oddmatics.RozWorld.ServerExecutive
                     Console.ReadKey(true);
                     shouldClose = true;
                 };
-            server.Stopped += delegate(object sender, EventArgs e)
-                                { shouldClose = true; };
+            server.Stopped +=
+                delegate(object sender, EventArgs e)
+                {
+                    server.Logger.Out("Server stopped - press any key to exit...");
+                    Console.ReadKey(true);
+                    shouldClose = true;
+                };
             RwCore.SetServer(server);
             server.Start();
 
