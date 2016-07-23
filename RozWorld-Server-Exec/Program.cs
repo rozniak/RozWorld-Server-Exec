@@ -107,22 +107,23 @@ namespace Oddmatics.RozWorld.ServerExecutive
                     string code = "&" + character;
                     switch (code.ToUpper())
                     {
-                        case ChatColour.BLACK: Console.ForegroundColor = ConsoleColor.Black; break;
-                        case ChatColour.DARK_BLUE: Console.ForegroundColor = ConsoleColor.DarkBlue; break;
-                        case ChatColour.GREEN: Console.ForegroundColor = ConsoleColor.DarkGreen; break;
-                        case ChatColour.TEAL: Console.ForegroundColor = ConsoleColor.DarkCyan; break;
-                        case ChatColour.DARK_RED: Console.ForegroundColor = ConsoleColor.DarkRed; break;
-                        case ChatColour.PURPLE: Console.ForegroundColor = ConsoleColor.DarkMagenta; break;
-                        case ChatColour.ORANGE: Console.ForegroundColor = ConsoleColor.DarkYellow; break;
-                        case ChatColour.GREY: Console.ForegroundColor = ConsoleColor.Gray; break;
-                        case ChatColour.DARK_GREY: Console.ForegroundColor = ConsoleColor.DarkGray; break;
-                        case ChatColour.BLUE: Console.ForegroundColor = ConsoleColor.Blue; break;
-                        case ChatColour.LIME: Console.ForegroundColor = ConsoleColor.Green; break;
-                        case ChatColour.CYAN: Console.ForegroundColor = ConsoleColor.Cyan; break;
-                        case ChatColour.RED: Console.ForegroundColor = ConsoleColor.Red; break;
-                        case ChatColour.MAGENTA: Console.ForegroundColor = ConsoleColor.Magenta; break;
-                        case ChatColour.YELLOW: Console.ForegroundColor = ConsoleColor.Yellow; break;
-                        case ChatColour.WHITE: Console.ForegroundColor = ConsoleColor.White; break;
+                        case ChatColour.BLACK: Console.ForegroundColor = ConsoleColor.Black; break;        // 0
+                        case ChatColour.DARK_BLUE: Console.ForegroundColor = ConsoleColor.DarkBlue; break; // 1
+                        case ChatColour.GREEN: Console.ForegroundColor = ConsoleColor.DarkGreen; break;    // 2
+                        case ChatColour.TEAL: Console.ForegroundColor = ConsoleColor.DarkCyan; break;      // 3
+                        case ChatColour.DARK_RED: Console.ForegroundColor = ConsoleColor.DarkRed; break;   // 4
+                        case ChatColour.PURPLE: Console.ForegroundColor = ConsoleColor.DarkMagenta; break; // 5
+                        case ChatColour.ORANGE: Console.ForegroundColor = ConsoleColor.DarkYellow; break;  // 6
+                        case ChatColour.GREY: Console.ForegroundColor = ConsoleColor.Gray; break;          // 7
+                        case ChatColour.DARK_GREY: Console.ForegroundColor = ConsoleColor.DarkGray; break; // 8
+                        case ChatColour.BLUE: Console.ForegroundColor = ConsoleColor.Blue; break;          // 9
+                        case ChatColour.LIME: Console.ForegroundColor = ConsoleColor.Green; break;         // A
+                        case ChatColour.CYAN: Console.ForegroundColor = ConsoleColor.Cyan; break;          // B
+                        case ChatColour.RED: Console.ForegroundColor = ConsoleColor.Red; break;            // C
+                        case ChatColour.MAGENTA: Console.ForegroundColor = ConsoleColor.Magenta; break;    // D
+                        case ChatColour.YELLOW: Console.ForegroundColor = ConsoleColor.Yellow; break;      // E
+                        case ChatColour.WHITE: Console.ForegroundColor = ConsoleColor.White; break;        // F
+                        case ChatColour.DEFAULT: Console.ForegroundColor = ConsoleColor.Gray; break;       // S
                         default: Console.Write(character); break;
                     }
                     formatCodeActive = false;
