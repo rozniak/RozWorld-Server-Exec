@@ -32,7 +32,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
                     Console.ReadKey(true);
                     shouldClose = true;
                 };
-            RwCore.SetServer(server);
+            RwCore.Server = server;
             server.Start();
 
             while (!shouldClose)

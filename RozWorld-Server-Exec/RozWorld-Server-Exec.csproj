@@ -42,6 +42,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RozWorld-API\RozWorld-API\bin\Debug\Oddmatics.RozWorld.API.dll</HintPath>
     </Reference>
+    <Reference Include="Oddmatics.RozWorld.Formats, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RozWorld-Formats\RozWorld-Formats\bin\Debug\Oddmatics.RozWorld.Formats.dll</HintPath>
+    </Reference>
+    <Reference Include="Oddmatics.RozWorld.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RozWorld-Net\RozWorld-Net\bin\Debug\Oddmatics.RozWorld.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Oddmatics.RozWorld.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RozWorld-Server\RozWorld-Server\bin\Debug\Oddmatics.RozWorld.Server.dll</HintPath>
