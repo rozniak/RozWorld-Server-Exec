@@ -51,10 +51,8 @@ namespace Oddmatics.RozWorld.ServerExecutive
                             CliInput = String.Empty;
                             Console.WriteLine();
 
-                            if (cmd.StartsWith("/") && cmd.Length > 1)
-                                server.SendCommand(server, cmd.Substring(1));
-                            else
-                                server.Logger.Out("[ERR] Unknown command.");
+                            // Do(cmd)
+                            server.Do(cmd);
 
                             break;
 
