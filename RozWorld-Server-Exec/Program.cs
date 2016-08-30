@@ -21,14 +21,16 @@ namespace Oddmatics.RozWorld.ServerExecutive
             server.FatalError +=
                 delegate(object sender, EventArgs e)
                 {
-                    server.Logger.Out("Fatal error occurred - press any key to exit...");
+                    server.LogWithContext(RwServer.LOGGING_CONTEXT_ERROR, 
+                        "Fatal error occurred - press any key to exit...");
                     Console.ReadKey(true);
                     shouldClose = true;
                 };
             server.Stopped +=
                 delegate(object sender, EventArgs e)
                 {
-                    server.Logger.Out("Server stopped - press any key to exit...");
+                    server.LogWithContext(RwServer.LOGGING_CONTEXT_ERROR, 
+                        "Server stopped - press any key to exit...");
                     Console.ReadKey(true);
                     shouldClose = true;
                 };
@@ -86,6 +88,10 @@ namespace Oddmatics.RozWorld.ServerExecutive
 
         public void Out(string message, bool colours = true)
         {
+            // Append logging context
+            message = "[" + ((RwServer)RwCore.Server).LoggingContext + "] " +
+                message;
+
             if (!string.IsNullOrEmpty(Program.CliInput))
             {
                 Console.SetCursorPosition(0, Console.CursorTop);
