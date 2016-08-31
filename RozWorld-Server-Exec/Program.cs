@@ -29,7 +29,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
             server.Stopped +=
                 delegate(object sender, EventArgs e)
                 {
-                    server.LogWithContext(RwServer.LOGGING_CONTEXT_ERROR, 
+                    server.LogWithContext(RwServer.LOGGING_CONTEXT_STATUS, 
                         "Server stopped - press any key to exit...");
                     Console.ReadKey(true);
                     shouldClose = true;
