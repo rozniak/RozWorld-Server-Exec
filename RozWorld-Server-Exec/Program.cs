@@ -1,4 +1,15 @@
-﻿using Oddmatics.RozWorld.API.Generic;
+﻿/**
+ * Oddmatics.RozWorld.ServerExecutive.Program -- RozWorld Dedicated Server Executive
+ *
+ * This source-code is part of the dedicated server program for the RozWorld project by rozza of Oddmatics:
+ * <<https://www.oddmatics.uk>>
+ * <<http://roz.world>>
+ * <<http://github.com/rozniak/RozWorld-Server-Exec>>
+ *
+ * Sharing, editing and general licence term information can be found inside of the "LICENCE.MD" file that should be located in the root of this project's directory structure.
+ */
+
+using Oddmatics.RozWorld.API.Generic;
 using Oddmatics.RozWorld.API.Generic.Chat;
 using Oddmatics.RozWorld.API.Server;
 using Oddmatics.RozWorld.Server;
@@ -7,7 +18,7 @@ using System.IO;
 
 namespace Oddmatics.RozWorld.ServerExecutive
 {
-    class Program
+    internal static class Program
     {
         public const int CharLimit = 100;
         public static string CliInput { get; private set; }
@@ -79,7 +90,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
         }
     }
 
-    class ConsoleLogger : ILogger
+    internal sealed class ConsoleLogger : ILogger
     {
         public ConsoleLogger()
         {
