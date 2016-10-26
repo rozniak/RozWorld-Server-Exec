@@ -3,6 +3,7 @@ using Oddmatics.RozWorld.API.Generic.Chat;
 using Oddmatics.RozWorld.API.Server;
 using Oddmatics.RozWorld.Server;
 using System;
+using System.IO;
 
 namespace Oddmatics.RozWorld.ServerExecutive
 {
@@ -145,12 +146,10 @@ namespace Oddmatics.RozWorld.ServerExecutive
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write(Program.CliInput);
-        }
 
-        public bool Save()
-        {
-            // don't use yet
-            return true;
+            // Output to file
+            File.AppendAllLines(Environment.CurrentDirectory + @"\server.log",
+                new string[] { "[" + DateTime.Now.ToString() + "] " + message });
         }
     }
 }

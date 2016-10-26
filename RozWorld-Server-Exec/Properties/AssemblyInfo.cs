@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Oddmatics")]
 [assembly: AssemblyProduct("RozWorld Dedicated Server")]
-[assembly: AssemblyCopyright("Copyright Oddmatics ©  2016")]
+[assembly: AssemblyCopyright("Copyright Oddmatics © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

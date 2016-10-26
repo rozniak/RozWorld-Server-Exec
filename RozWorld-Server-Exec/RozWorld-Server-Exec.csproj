@@ -54,9 +54,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RozWorld-Server\RozWorld-Server\bin\Debug\Oddmatics.RozWorld.Server.dll</HintPath>
     </Reference>
-    <Reference Include="Oddmatics.Util.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Oddmatics-IO\Oddmatics-IO\bin\Release\Oddmatics.Util.IO.dll</HintPath>
+    <Reference Include="Oddmatics.Util.IO">
+      <HintPath>..\..\Oddmatics-IO\Oddmatics-IO\bin\Debug\Oddmatics.Util.IO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
