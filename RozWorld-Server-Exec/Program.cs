@@ -29,6 +29,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
             bool shouldClose = false;
 
             CliInput = String.Empty;
+            server.TrustedPluginCheck = ConsoleTrustPluginCheck;
             server.Logger = new ConsoleLogger();
             server.FatalError +=
                 delegate(object sender, EventArgs e)
@@ -65,7 +66,6 @@ namespace Oddmatics.RozWorld.ServerExecutive
                             CliInput = String.Empty;
                             Console.WriteLine();
 
-                            // Do(cmd)
                             server.Do(cmd);
 
                             break;
@@ -87,6 +87,24 @@ namespace Oddmatics.RozWorld.ServerExecutive
                     }
                 }
             }
+        }
+
+
+        private static bool ConsoleTrustPluginCheck(string file)
+        {
+            Console.WriteLine("Do you trust the plugin '" + file + "'? (Y/N)");
+
+            ConsoleKeyInfo keyPressed;
+
+            do
+            {
+                keyPressed = Console.ReadKey(true);
+            } while (keyPressed.Key != ConsoleKey.Y && keyPressed.Key != ConsoleKey.N);
+
+            if (keyPressed.Key == ConsoleKey.Y)
+                return true;
+
+            return false; // N was pressed
         }
     }
 
