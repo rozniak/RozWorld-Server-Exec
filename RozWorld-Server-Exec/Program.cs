@@ -47,6 +47,7 @@ namespace Oddmatics.RozWorld.ServerExecutive
                     Console.ReadKey(true);
                     shouldClose = true;
                 };
+            RwCore.InstanceType = RwInstanceType.ServerOnly;
             RwCore.Server = server;
             server.Start();
 
