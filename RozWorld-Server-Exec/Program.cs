@@ -13,6 +13,7 @@ using Oddmatics.RozWorld.API.Generic;
 using Oddmatics.RozWorld.API.Generic.Chat;
 using Oddmatics.RozWorld.API.Server;
 using Oddmatics.RozWorld.Server;
+using Oddmatics.Util.Collections;
 using System;
 using System.IO;
 
@@ -51,16 +52,20 @@ namespace Oddmatics.RozWorld.ServerExecutive
             RwCore.Server = server;
             server.Start();
 
+            // Store command history
+            var commandHistory = new CappedStack<string>(10);
+            int historyIndex = -1;
+
             while (!shouldClose)
             {
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo keyPressed = Console.ReadKey();
+                    string spaceToClean;
 
-                    switch (keyPressed.KeyChar)
+                    switch (keyPressed.Key)
                     {
-                            // Enter key
-                        case '\r':
+                        case ConsoleKey.Enter:
                             // Reason for this first bit is so that the Logger moves on the next line
                             // and doesn't bother rewriting the command (want it to remain in the Logger)
                             string cmd = CliInput;
@@ -68,16 +73,56 @@ namespace Oddmatics.RozWorld.ServerExecutive
                             Console.WriteLine();
 
                             server.Do(cmd);
+                            commandHistory.Push(cmd);
+                            historyIndex = -1; // Reset where we are in the command history
 
                             break;
 
                             // Backspace
-                        case '\b':
+                        case ConsoleKey.Backspace:
                             Console.Write(" ");
                             Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
 
                             if (CliInput.Length > 0)
                                 CliInput = CliInput.Substring(0, CliInput.Length - 1);
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            // Output this to the console to clear the previous command
+                            spaceToClean = String.Empty.PadLeft(CliInput.Length);
+
+                            if (--historyIndex <= -1)
+                            {
+                                historyIndex = commandHistory.Count;
+                                CliInput = String.Empty;
+                            }
+                            else
+                                CliInput = commandHistory[historyIndex];
+
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(spaceToClean);
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(CliInput);
+
+                            break;
+
+                        case ConsoleKey.UpArrow:
+                            // Output this to the console to clear the previous command
+                            spaceToClean = String.Empty.PadLeft(CliInput.Length);
+
+                            if (++historyIndex > commandHistory.Count - 1)
+                            {
+                                historyIndex = -1;
+                                CliInput = String.Empty;
+                            }
+                            else
+                                CliInput = commandHistory[historyIndex];
+
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(spaceToClean);
+                            Console.SetCursorPosition(0, Console.CursorTop);
+                            Console.Write(CliInput);
+
                             break;
 
                             // Any other key and backspace
